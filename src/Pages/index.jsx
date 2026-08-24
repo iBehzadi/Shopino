@@ -4,4 +4,5 @@ import ProductDetails from "./PdoructDetails";
 import Cart from "./Cart";
 import Auth from "./Auth";
 import Profile from "./Profile";
-export { Home, Products, ProductDetails, Profile, Cart, Auth };
+import About from "./About";
+export { Home, Products, ProductDetails, Profile, Cart, Auth,About };
