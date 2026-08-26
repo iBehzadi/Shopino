@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { BiShoppingBag, BiMenu, BiX } from "react-icons/bi";
+import { BiShoppingBag, BiMenu, BiX, BiUser } from "react-icons/bi";
 import { Link, useLocation } from "react-router-dom";
 
 export default function Navbar() {
@@ -22,31 +22,35 @@ export default function Navbar() {
 
   return (
     <nav className="fixed left-0 right-0 z-50 bg-white ">
-      <div className={`mx-auto flex max-w-7xl items-center justify-between px-4 py-4 transition-all duration-300 ${scrolled ? 'shadow w-[90%]' : ''}`}>
-        {/* Logo */}
-        <Link to="/" className="text-2xl font-bold text-blue-600">
-          شاپینو
-        </Link>
+      <div
+        className={`mx-auto flex max-w-7xl items-center justify-between px-4 py-4 transition-all duration-300 ${scrolled ? " shadow rounded-2xl backdrop-blur-lg border border-white/10 py-3" : "bg-transparent py-5"}`}
+      >
+        <div className="flex items-center gap-20">
+          {/* Logo */}
+          <Link to="/" className="text-2xl font-bold text-blue-600">
+            شاپینو
+          </Link>
 
-        {/* Desktop Menu */}
-        <div className="hidden items-center gap-6 sm:flex">
-          {navLinks.map((link) => (
-            <Link
-              to={link.path}
-              key={link.name}
-              className="group relative text-gray-700 hover:text-blue-600"
-            >
-              {link.name}
+          {/* Desktop Menu */}
+          <div className="hidden items-center gap-6 sm:flex">
+            {navLinks.map((link) => (
+              <Link
+                to={link.path}
+                key={link.name}
+                className="group relative text-gray-700 hover:text-blue-600"
+              >
+                {link.name}
 
-              <span
-                className={`absolute left-0 -bottom-1 h-0.5 bg-orange-500 transition-all duration-300 ${
-                  location.pathname === link.path
-                    ? "w-full"
-                    : "w-0 group-hover:w-full"
-                }`}
-              />
-            </Link>
-          ))}
+                <span
+                  className={`absolute left-0 -bottom-1 h-0.5 bg-orange-500 transition-all duration-300 ${
+                    location.pathname === link.path
+                      ? "w-full"
+                      : "w-0 group-hover:w-full"
+                  }`}
+                />
+              </Link>
+            ))}
+          </div>
         </div>
 
         {/* Desktop Actions */}
@@ -54,7 +58,7 @@ export default function Navbar() {
           <input
             type="text"
             placeholder="جستجو"
-            className="hidden rounded border border-orange-300 px-4 py-2 outline-0 md:block"
+            className="hidden rounded-full bg-gray-200 px-4 py-2 outline-blue-300  md:block"
           />
 
           <Link
@@ -65,7 +69,7 @@ export default function Navbar() {
           </Link>
 
           <Link to="/auth" className="text-gray-700 hover:text-blue-600">
-            ورود/ثبت نام
+            <BiUser className="text-3xl bg-gray-300 rounded-full p-1 hover:text-white " />
           </Link>
         </div>
 
