@@ -1,8 +1,12 @@
-import React from 'react'
+import React from "react";
+import Hero from "./Hero";
+import Categories from "./Categories";
 
 export default function Home() {
   return (
-    <div>home</div>
-    
-  )
+    <div>
+      <Hero />
+      <Categories />
+    </div>
+  );
 }

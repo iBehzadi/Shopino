@@ -21,9 +21,9 @@ export default function Navbar() {
   ];
 
   return (
-    <nav className="fixed left-0 right-0 z-50 bg-white ">
+    <nav className={`fixed left-0 right-0 z-50 transition-all duration-400 ${scrolled ? '' : 'bg-white'}`}>
       <div
-        className={`mx-auto flex max-w-7xl items-center justify-between px-4 py-4 transition-all duration-300 ${scrolled ? " shadow rounded-2xl backdrop-blur-lg border border-white/10 py-3" : "bg-transparent py-5"}`}
+        className={`mx-auto flex max-w-7xl bg-green-200 items-center justify-between px-4 py-4 transition-all duration-400 ${scrolled ? " shadow rounded-2xl backdrop-blur-xl  border-white/10 py-3 my-2" : "bg-transparent py-5"}`}
       >
         <div className="flex items-center gap-20">
           {/* Logo */}
@@ -54,11 +54,11 @@ export default function Navbar() {
         </div>
 
         {/* Desktop Actions */}
-        <div className="hidden items-center gap-4 sm:flex">
+        <div className="hidden items-center gap-4 sm:flex ">
           <input
             type="text"
             placeholder="جستجو"
-            className="hidden rounded-full bg-gray-200 px-4 py-2 outline-blue-300  md:block"
+            className="hidden rounded-full w-60 bg-gray-200 transition-all duration-300 focus:w-90 hover:w-90 px-4 py-2 outline-blue-300  md:block"
           />
 
           <Link
