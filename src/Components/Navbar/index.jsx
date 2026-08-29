@@ -21,9 +21,9 @@ export default function Navbar() {
   ];
 
   return (
-    <nav className={`fixed left-0 right-0 z-50 transition-all duration-400 ${scrolled ? '' : 'bg-white'}`}>
+    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-400 ${scrolled ? '' : 'border-b border-b-gray-200 bg-white'}`}>
       <div
-        className={`mx-auto flex max-w-7xl bg-green-200 items-center justify-between px-4 py-4 transition-all duration-400 ${scrolled ? " shadow rounded-2xl backdrop-blur-xl  border-white/10 py-3 my-2" : "bg-transparent py-5"}`}
+        className={`mx-auto flex max-w-7xl bg-white items-center justify-between px-4 py-4 transition-all duration-400 ${scrolled ? " shadow rounded-2xl backdrop-blur-xl  border-white/10 py-3 my-2" : "bg-transparent py-5"}`}
       >
         <div className="flex items-center gap-20">
           {/* Logo */}
