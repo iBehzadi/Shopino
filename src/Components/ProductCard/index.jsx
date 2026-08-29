@@ -2,19 +2,20 @@ import React, { useState } from "react";
 import { CiHeart } from "react-icons/ci";
 import { FaHeart } from "react-icons/fa";
 import { IoBagOutline, IoBag } from "react-icons/io5";
+import { useNavigate } from "react-router-dom";
 
-export default function ProductCard({
-  id,
-  name,
-  price,
-  images,
-  discountPrice = 0,
-  stock = 0,
-  
-}) {
+export default function ProductCard({ product }) {
   const [isLiked, setIsLiked] = useState(false);
   const [isInCart, setIsInCart] = useState(false);
-
+  const {
+    documentId,
+    title,
+    price,
+    images,
+    discountPrice = 0,
+    stock = 0,
+  } = product;
+  const navigate = useNavigate();
   const handleLike = (e) => {
     e.stopPropagation();
     setIsLiked(!isLiked);
@@ -29,12 +30,17 @@ export default function ProductCard({
     discountPrice > 0 ? Math.round(((price - discountPrice) / price) * 100) : 0;
 
   return (
-    <div className="group relative py-1 bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden w-72 mx-auto">
+    <div
+      onClick={() =>
+        navigate(`/product-details/${documentId}/${title.replaceAll(" ", "-")}`)
+      }
+      className="group relative py-1 bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden w-58 mx-auto"
+    >
       {/*  تصویر   */}
       <div className="relative aspect-square overflow-hidden bg-gray-100">
         <img
           src={import.meta.env.VITE_BASE_FILE + images[0]?.url}
-          alt={name}
+          alt={title}
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
         />
 
@@ -63,7 +69,7 @@ export default function ProductCard({
       <div className="p-2 space-y-1">
         {/* نام محصول */}
         <h3 className="text-gray-800 font-semibold text-sm line-clamp-2 leading-tight">
-          {name}
+          {title}
         </h3>
 
         {/* قیمت‌*/}
@@ -95,9 +101,7 @@ export default function ProductCard({
             {stock > 0 ? `موجود (${stock})` : "ناموجود"}
           </span>
           {stock > 0 && stock < 5 && (
-            <span className="text-orange-500 font-medium">
-              فقط {stock} عدد
-            </span>
+            <span className="text-orange-500 font-medium">فقط {stock} عدد</span>
           )}
         </div>
 
@@ -109,8 +113,8 @@ export default function ProductCard({
             stock === 0
               ? "bg-gray-200 text-gray-400 cursor-not-allowed"
               : isInCart
-              ? "bg-emerald-600 text-white hover:bg-emerald-700"
-              : "bg-blue-600 text-white hover:bg-blue-700 active:scale-95"
+                ? "bg-emerald-600 text-white hover:bg-emerald-700"
+                : "bg-blue-600 text-white hover:bg-blue-700 active:scale-95"
           }`}
         >
           {isInCart ? (
@@ -125,8 +129,6 @@ export default function ProductCard({
             </>
           )}
         </button>
-
-        
       </div>
     </div>
   );
