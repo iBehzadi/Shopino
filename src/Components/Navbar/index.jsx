@@ -1,11 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { BiShoppingBag, BiMenu, BiX, BiUser } from "react-icons/bi";
 import { Link, useLocation } from "react-router-dom";
+import { useCartStore } from "../../Store/cartStore";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-
+  const items = useCartStore((state) => state.items);
+  const cartCount = items.reduce(
+    (total, item) => total + item.cartQuantity,
+    0,
+  );
   const location = useLocation();
 
   useEffect(() => {
@@ -21,7 +26,9 @@ export default function Navbar() {
   ];
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-400 ${scrolled ? '' : 'border-b border-b-gray-200 bg-white'}`}>
+    <nav
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-400 ${scrolled ? "" : "border-b border-b-gray-200 bg-white"}`}
+    >
       <div
         className={`mx-auto flex max-w-7xl bg-white items-center justify-between px-4 py-4 transition-all duration-400 ${scrolled ? " shadow rounded-2xl backdrop-blur-xl  border-white/10 py-3 my-2" : "bg-transparent py-5"}`}
       >
@@ -63,9 +70,10 @@ export default function Navbar() {
 
           <Link
             to="/cart"
-            className="text-xl text-gray-700 hover:text-blue-600"
+            className="text-xl relative text-gray-700 hover:text-blue-600"
           >
-            <BiShoppingBag />
+            <BiShoppingBag  />
+            <span className="absolute -top-4 -left-2 text-sm bg-blue-400 rounded-full text-white px-1">{cartCount}</span>
           </Link>
 
           <Link to="/auth" className="text-gray-700 hover:text-blue-600">
@@ -134,6 +142,7 @@ export default function Navbar() {
           >
             <BiShoppingBag />
             سبد خرید
+            
           </Link>
 
           <Link
