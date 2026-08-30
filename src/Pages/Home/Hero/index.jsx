@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 export default function Hero() {
   const navigate = useNavigate();
   return (
-    <div className="relative h-[80vh] overflow-hidden">
+    <div className="relative h-screen overflow-hidden">
       <img
         src="../../../src/assets/w.jpg"
         className="h-full w-full object-cover object-center"
