@@ -34,7 +34,7 @@ export default function ProductCard({ product }) {
       onClick={() =>
         navigate(`/product-details/${documentId}/${title.replaceAll(" ", "-")}`)
       }
-      className="group relative py-1 bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden w-58 mx-auto"
+      className="group relative py-1 bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden  w-84 sm:w-70 md:w-58 mx-auto"
     >
       {/*  تصویر   */}
       <div className="relative aspect-square overflow-hidden bg-gray-100">
