@@ -21,6 +21,11 @@ export default function ProductDetails() {
     })();
   }, [id]);
   const currentImage = product?.images[currentImageIndex].url;
+
+  const productQuantity = cartItems.find(
+    (item) => item.documentId === product?.documentId,
+  )?.cartQuantity;
+
   return (
     <div className="mt-30">
       <div className="text-gray-600 mx-6 text-sm my-6">
@@ -65,7 +70,8 @@ export default function ProductDetails() {
 
               <div className="flex items-center gap-3 rounded-lg border border-gray-200 p-1">
                 <button
-                  className="flex h-8 w-8 items-center justify-center rounded-md bg-gray-100 text-lg font-bold transition hover:bg-gray-200"
+                disabled={productQuantity >= product.stock}
+                  className="flex h-8 w-8 items-center disabled:opacity-45 justify-center rounded-md bg-gray-100 text-lg font-bold transition hover:bg-gray-200"
                   onClick={() => increaseQuantity(product.documentId)}
                 >
                   +
@@ -73,9 +79,7 @@ export default function ProductDetails() {
 
                 <span className="min-w-6 text-center font-semibold">
                   {
-                    cartItems.find(
-                      (item) => item.documentId === product.documentId,
-                    )?.cartQuantity
+                    productQuantity
                   }
                 </span>
 
@@ -87,13 +91,17 @@ export default function ProductDetails() {
                 </button>
               </div>
             </div>
-          ) : (
+          ) : product?.stock > 0 ? (
             <button
               onClick={() => addToCart(product)}
               className="cursor-pointer bg-blue-600 w-full hover:bg-blue-500 text-white px-4 py-2 rounded-full"
             >
               افزودن به سبد خرید
             </button>
+          ) : (
+            <span className=" w-full flex items-center justify-center text-white bg-red-400 px-4 py-2 rounded-full">
+              محصول ناموجود
+            </span>
           )}
         </div>
       </div>

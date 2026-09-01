@@ -4,7 +4,7 @@ import { FaInstagram, FaTelegramPlane, FaGithub } from "react-icons/fa";
 
 export default function Footer() {
   return (
-    <footer className="mt-20 bg-gray-900 text-gray-300">
+    <footer className="mt-15 bg-gray-900 text-gray-300">
       <div className="mx-auto grid max-w-7xl grid-cols-1 gap-10 px-6 py-12 sm:grid-cols-2 lg:grid-cols-4">
         {/* Brand */}
         <div>
@@ -51,21 +51,21 @@ export default function Footer() {
           <h3 className="mb-4 font-semibold text-white">ما را دنبال کنید</h3>
           <div className="flex gap-3">
             <a
-              href="#"
+              href="https://instagram.com/behzad.1997"
               className="rounded-lg bg-gray-800 p-3 transition hover:bg-gray-700"
             >
               <FaInstagram />
             </a>
 
             <a
-              href="#"
+              href="https://t.me/ibehzadi"
               className="rounded-lg bg-gray-800 p-3 transition hover:bg-gray-700"
             >
               <FaTelegramPlane />
             </a>
 
             <a
-              href="#"
+              href="https://github.com/iBehzadi"
               className="rounded-lg bg-gray-800 p-3 transition hover:bg-gray-700"
             >
               <FaGithub />

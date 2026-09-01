@@ -73,7 +73,7 @@ export default function Navbar() {
             className="text-xl relative text-gray-700 hover:text-blue-600"
           >
             <BiShoppingBag  />
-            <span className="absolute -top-4 -left-2 text-sm bg-blue-400 rounded-full text-white px-1">{cartCount}</span>
+            <span className="absolute -top-4 -left-2 text-sm bg-blue-400 rounded-full text-white px-1">{items.length}</span>
           </Link>
 
           <Link to="/auth" className="text-gray-700 hover:text-blue-600">
