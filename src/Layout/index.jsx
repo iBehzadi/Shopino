@@ -8,7 +8,7 @@ export default function Layout() {
     <>
       <ScrollToTop />
       <Navbar />
-      <main className="min-h-screen">
+      <main className="min-h-[70vh]">
         <Outlet />
       </main>
       <Footer />

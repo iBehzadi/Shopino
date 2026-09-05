@@ -7,10 +7,7 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const items = useCartStore((state) => state.items);
-  const cartCount = items.reduce(
-    (total, item) => total + item.cartQuantity,
-    0,
-  );
+
   const location = useLocation();
 
   useEffect(() => {
