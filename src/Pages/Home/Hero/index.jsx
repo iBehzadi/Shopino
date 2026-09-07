@@ -1,4 +1,5 @@
 import React from "react";
+import { FiShoppingBag } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
 
 export default function Hero() {
@@ -24,9 +25,10 @@ export default function Hero() {
 
         <button
           onClick={() => navigate("/products")}
-          className="rounded-full bg-white px-6 py-3 cursor-pointer font-semibold text-gray-800 transition hover:scale-105"
+          className="inline-flex items-center gap-2 rounded-xl bg-blue-600 px-6 py-3 font-medium text-white transition hover:bg-blue-700"
         >
           مشاهده محصولات
+          <FiShoppingBag />
         </button>
       </div>
     </div>
