@@ -15,6 +15,7 @@ body {
   font-family: "Estedad", sans-serif;
   margin: 0;
   /* background: #f8fafc; */
+  background-color: rgba(0, 0, 0, 0.063);
 }
 
 * {

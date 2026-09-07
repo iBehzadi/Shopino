@@ -1,13 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { BiShoppingBag, BiMenu, BiX, BiUser } from "react-icons/bi";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useCartStore } from "../../Store/cartStore";
+import { useAuthStore } from "../../Store/authStore";
+import { ImEnter, ImExit } from "react-icons/im";
+import { CiHome } from "react-icons/ci";
+import { RiShoppingBag3Line } from "react-icons/ri";
+import { MdOutlineContactPhone } from "react-icons/md";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const { user, logout } = useAuthStore();
   const items = useCartStore((state) => state.items);
-
+  const navigate = useNavigate();
   const location = useLocation();
 
   useEffect(() => {
@@ -17,9 +23,9 @@ export default function Navbar() {
   }, []);
 
   const navLinks = [
-    { name: "خانه", path: "/" },
-    { name: "محصولات", path: "/products" },
-    { name: "درباره ما", path: "/about" },
+    { name: "خانه", path: "/", icon: CiHome },
+    { name: "محصولات", path: "/products", icon: RiShoppingBag3Line },
+    { name: "درباره ما", path: "/about", icon: MdOutlineContactPhone },
   ];
 
   return (
@@ -36,24 +42,29 @@ export default function Navbar() {
           </Link>
 
           {/* Desktop Menu */}
-          <div className="hidden items-center gap-6 sm:flex">
-            {navLinks.map((link) => (
-              <Link
-                to={link.path}
-                key={link.name}
-                className="group relative text-gray-700 hover:text-blue-600"
-              >
-                {link.name}
+          <div className="hidden items-center gap-6 sm:flex ">
+            {navLinks.map((link) => {
+              const Icon = link.icon;
 
-                <span
-                  className={`absolute left-0 -bottom-1 h-0.5 bg-orange-500 transition-all duration-300 ${
-                    location.pathname === link.path
-                      ? "w-full"
-                      : "w-0 group-hover:w-full"
-                  }`}
-                />
-              </Link>
-            ))}
+              return (
+                <Link
+                  to={link.path}
+                  key={link.name}
+                  className="group relative text-gray-700 hover:text-blue-600 flex items-center justify-center gap-1"
+                >
+                  <Icon />
+                  {link.name}
+
+                  <span
+                    className={`absolute left-0 -bottom-1 h-0.5 bg-orange-500 transition-all duration-300 ${
+                      location.pathname === link.path
+                        ? "w-full"
+                        : "w-0 group-hover:w-full"
+                    }`}
+                  />
+                </Link>
+              );
+            })}
           </div>
         </div>
 
@@ -62,20 +73,52 @@ export default function Navbar() {
           <input
             type="text"
             placeholder="جستجو"
-            className="hidden rounded-full w-60 bg-gray-200 transition-all duration-300 focus:w-90 hover:w-90 px-4 py-2 outline-blue-300  md:block"
+            className="hidden rounded-full w-50 bg-gray-200 transition-all duration-300 focus:w-90 hover:w-90 px-4 py-2 outline-blue-300 lg:block"
           />
 
           <Link
             to="/cart"
             className="text-xl relative text-gray-700 hover:text-blue-600"
           >
-            <BiShoppingBag  />
-            <span className="absolute -top-4 -left-2 text-sm bg-blue-400 rounded-full text-white px-1">{items.length}</span>
+            <BiShoppingBag />
+            <span className="absolute -top-4 -left-2 text-sm bg-blue-400 rounded-full text-white px-1">
+              {items.length}
+            </span>
           </Link>
 
-          <Link to="/auth" className="text-gray-700 hover:text-blue-600">
-            <BiUser className="text-3xl bg-gray-300 rounded-full p-1 hover:text-white " />
-          </Link>
+          <div className="profile">
+            {user ? (
+              <div className="group relative flex items-center gap-2">
+                <Link
+                  to="/profile"
+                  className="text-gray-700 hover:text-blue-600"
+                >
+                  <BiUser className="text-3xl bg-gray-300 rounded-full p-1 hover:text-white " />
+                </Link>
+                <div className="absolute bg-white shadow border border-gray-200 p-2 flex flex-col gap-2 items-center rounded top-10 -left-5 w-30 h-0 opacity-0 invisible group-hover:opacity-100 group-hover:h-20 group-hover:visible transition-all duration-300">
+                  <span className="text-sm">سلام {user.username}</span>
+                  <hr className="text-gray-300 w-full" />
+                  <button
+                    className="cursor-pointer text-red-400 hover:scale-110 transition-all duration-300"
+                    onClick={() => {
+                      logout();
+                      navigate("/");
+                    }}
+                  >
+                    خروج
+                  </button>
+                </div>
+              </div>
+            ) : (
+              <Link
+                to="/auth"
+                className="group text-sm border border-gray-300 hover:border-gray-400 rounded p-2 flex items-center gap-2"
+              >
+                <ImEnter className="text-xl group-hover:text-green-600" />
+                <span> ورود / ثبت نام</span>
+              </Link>
+            )}
+          </div>
         </div>
 
         {/* Mobile Menu Button */}
@@ -139,16 +182,35 @@ export default function Navbar() {
           >
             <BiShoppingBag />
             سبد خرید
-            
           </Link>
 
-          <Link
-            to="/auth"
-            onClick={() => setIsOpen(false)}
-            className="text-gray-700"
-          >
-            ورود / ثبت نام
-          </Link>
+          <div>
+            {user ? (
+              <div className="flex flex-col items-start gap-2">
+                <span className="text-gray-700">سلام {user.username}</span>
+                <button
+                  className="cursor-pointer text-red-400 flex items-center gap-2"
+                  onClick={() => {
+                    logout();
+                    navigate("/");
+                    setIsOpen(false);
+                  }}
+                >
+                  <ImExit />
+                  <span> خروج از حساب </span>
+                </button>
+              </div>
+            ) : (
+              <Link
+                to="/auth"
+                className="p-2 flex items-center gap-2"
+                onClick={() => setIsOpen(false)}
+              >
+                <ImEnter className=" text-gray-700" />
+                <span className="text-sm"> ورود / ثبت نام</span>
+              </Link>
+            )}
+          </div>
         </div>
       </div>
     </nav>

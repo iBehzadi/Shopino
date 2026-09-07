@@ -1,28 +1,51 @@
 import React, { useState } from "react";
 import useFormFields from "../../../Hooks/useFormFields";
-export default function Login() {
+import notify from "../../../Utils/notify";
+import fetchData from "../../../Utils/fetchData";
+import { useAuthStore } from "../../../Store/authStore";
+import { useNavigate } from "react-router-dom";
+export default function Login({ handlePage }) {
+  const setAuth = useAuthStore((state) => state.setAuth);
   const [loading, setLoading] = useState(false);
+    const navigate = useNavigate();
   const [fields, handleChange, setFields] = useFormFields({
-    username: "",
+    email: "",
     password: "",
   });
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    try {
+      const result = await fetchData("auth/local", {
+        method: "POST",
+        body: JSON.stringify({
+          identifier: fields.email,
+          password: fields.password,
+        }),
+      });
+      if (result.error?.status == 400) {
+        throw new Error(`${result.error.message}`);
+      }
+      notify("success", `Wellcome ${result.user.username}`);
+      setAuth(result.user, result.jwt);
+      navigate("/");
+    } catch (error) {
+      notify("error", error.message);
+    }
   };
   return (
     <form
-      className="mx-auto flex flex-col border border-gray-100 shadow-xl rounded-2xl w-100 py-4 px-6 gap-4 items-center justify-center mt-32"
+      className="mx-auto flex flex-col border bg-white border-gray-100 shadow-xl rounded-2xl w-100 py-4 px-6 gap-4 items-center justify-center mt-32"
       onSubmit={handleSubmit}
     >
-      <h1 className="mt-2">صفحه ورود</h1>
+      <h1 className="mt-2">ورود به حساب کاربری</h1>
       <hr className="w-1/2 text-gray-400 my-1" />
       <input
-        value={fields.username}
+        value={fields.email}
         onChange={handleChange}
-        type="text"
-        name="username"
+        type="email"
+        name="email"
         dir="ltr"
-        placeholder="نام کاربری"
+        placeholder="ایمیل"
         className="w-full p-3 bg-gray-50 outline-blue-300 rounded focus:outline-1"
       />
       <input
@@ -41,6 +64,9 @@ export default function Login() {
       >
         {loading ? "درحال بررسی اطلاعات" : "ورود"}
       </button>
+      <span className="cursor-pointer" onClick={() => handlePage("register")}>
+        جهت ساخت حساب کاربری کلیک کنید.
+      </span>
     </form>
   );
 }

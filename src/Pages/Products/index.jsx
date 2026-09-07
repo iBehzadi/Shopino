@@ -24,7 +24,7 @@ export default function Products() {
         <hr className="h-2 w-full text-blue-300 my-4" />
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10">
-        {products.map((prd) => (
+        {products?.map((prd) => (
           <ProductCard
             product={prd}
             key={prd.id}

@@ -2,6 +2,6 @@ import React from 'react'
 
 export default function Profile() {
   return (
-    <div>Profile</div>
+    <div className='flex items-center justify-center h-screen'>Profile</div>
   )
 }
