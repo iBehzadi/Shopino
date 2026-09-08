@@ -36,7 +36,11 @@ export default function ProductDetails() {
       <div className="flex flex-col justify-center items-center sm:items-stretch sm:flex-row  mx-10 gap-10">
         {/* images */}
         <div className="w-100  border-gray-500  ">
-          <img src={import.meta.env.VITE_BASE_FILE + currentImage} alt="" />
+          <img
+            className="bg-white p-4 rounded border border-gray-300"
+            src={import.meta.env.VITE_BASE_FILE + currentImage}
+            alt={product?.title}
+          />
           <div className="flex items-center justify-center my-6">
             {product?.images.map((img, index) => (
               <img
@@ -70,7 +74,7 @@ export default function ProductDetails() {
 
               <div className="flex items-center gap-3 rounded-lg border border-gray-200 p-1">
                 <button
-                disabled={productQuantity >= product.stock}
+                  disabled={productQuantity >= product.stock}
                   className="flex h-8 w-8 items-center disabled:opacity-45 justify-center rounded-md bg-gray-100 text-lg font-bold transition hover:bg-gray-200"
                   onClick={() => increaseQuantity(product.documentId)}
                 >
@@ -78,9 +82,7 @@ export default function ProductDetails() {
                 </button>
 
                 <span className="min-w-6 text-center font-semibold">
-                  {
-                    productQuantity
-                  }
+                  {productQuantity}
                 </span>
 
                 <button

@@ -1,16 +1,12 @@
 import React from "react";
 import { Navigate, Outlet } from "react-router-dom";
-import { Auth } from "../../Pages";
+import { useAuthStore } from "../../Store/authStore";
 
 export default function Protected() {
-  //   if (!token) {
-  //     return <Navigate to={"/auth"} />;
-  //   }
-
-  // {
-  //   isAuthenticated ? <Profile /> : <Login />;
-  // }
-
+  const { token } = useAuthStore();
+  if (!token) {
+    return <Navigate to={"/auth"} />;
+  }
   return (
     <>
       <Outlet />

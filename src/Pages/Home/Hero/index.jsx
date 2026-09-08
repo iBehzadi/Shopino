@@ -20,7 +20,7 @@ export default function Hero() {
         </h1>
 
         <h2 className="mb-6 text-base md:text-xl">
-          بهترین محصولات با قیمت مناسب، همین‌جا منتظر شما
+          بهترین محصولات دیجیتال با قیمت مناسب، همین‌جا منتظر شما
         </h2>
 
         <button

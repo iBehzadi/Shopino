@@ -7,7 +7,8 @@ import { ImEnter, ImExit } from "react-icons/im";
 import { CiHome } from "react-icons/ci";
 import { RiShoppingBag3Line } from "react-icons/ri";
 import { MdOutlineContactPhone } from "react-icons/md";
-
+import { FaChild } from "react-icons/fa";
+import { SlBasketLoaded } from "react-icons/sl";
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
@@ -95,11 +96,20 @@ export default function Navbar() {
                 >
                   <BiUser className="text-3xl bg-gray-300 rounded-full p-1 hover:text-white " />
                 </Link>
-                <div className="absolute bg-white shadow border border-gray-200 p-2 flex flex-col gap-2 items-center rounded top-10 -left-5 w-30 h-0 opacity-0 invisible group-hover:opacity-100 group-hover:h-20 group-hover:visible transition-all duration-300">
-                  <span className="text-sm">سلام {user.username}</span>
-                  <hr className="text-gray-300 w-full" />
+                <div className="absolute bg-white shadow border border-gray-200 p-2 flex flex-col gap-2 items-center rounded top-10 -left-5 w-30 h-0 opacity-0 invisible group-hover:opacity-100 group-hover:h-auto group-hover:visible transition-all duration-300">
+                  <span className="text-sm text-gray-600 flex items-center gap-1 flex-1">
+                    <FaChild />
+                    سلام {user.username}
+                  </span>
+                  <Link
+                    to="/cart"
+                    className="text-sm flex items-center justify-center py-2 gap-1 cursor-pointer text-white bg-blue-400 w-full rounded hover:scale-105 transition-all duration-300"
+                  >
+                    <SlBasketLoaded />
+                    سبد خرید
+                  </Link>
                   <button
-                    className="cursor-pointer text-red-400 hover:scale-110 transition-all duration-300"
+                    className="cursor-pointer text-white bg-red-400 w-full rounded hover:scale-105 transition-all duration-300"
                     onClick={() => {
                       logout();
                       navigate("/");
@@ -112,7 +122,7 @@ export default function Navbar() {
             ) : (
               <Link
                 to="/auth"
-                className="group text-sm border border-gray-300 hover:border-gray-400 rounded p-2 flex items-center gap-2"
+                className="group text-sm border text-gray-600 border-gray-300 hover:border-gray-400 rounded p-2 flex items-center gap-2"
               >
                 <ImEnter className="text-xl group-hover:text-green-600" />
                 <span> ورود / ثبت نام</span>

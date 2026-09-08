@@ -5,4 +5,5 @@ import Cart from "./Cart";
 import Auth from "./Auth";
 import Profile from "./Profile";
 import About from "./About";
-export { Home, Products, ProductDetails, Profile, Cart, Auth, About };
+import Checkout from './Checkout'
+export { Home, Products, ProductDetails, Profile, Cart, Auth, About,Checkout };
