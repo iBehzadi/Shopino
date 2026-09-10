@@ -91,6 +91,10 @@ export default function ProductDetails() {
                 >
                   −
                 </button>
+
+                {productQuantity >= product.stock && (
+                  <span className="text-xs text-red-500">حداکثر موجودی</span>
+                )}
               </div>
             </div>
           ) : product?.stock > 0 ? (

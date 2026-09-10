@@ -64,7 +64,7 @@ export default function Login({ handlePage }) {
       >
         {loading ? "درحال بررسی اطلاعات" : "ورود"}
       </button>
-      <span className="cursor-pointer" onClick={() => handlePage("register")}>
+      <span className="cursor-pointer hover:border-b" onClick={() => handlePage("register")}>
         جهت ساخت حساب کاربری کلیک کنید.
       </span>
     </form>

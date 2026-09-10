@@ -71,7 +71,7 @@ export default function Register({ handlePage }) {
       >
         {loading ? "درحال بررسی اطلاعات" : "ثبت نام"}
       </button>
-      <span className="cursor-pointer" onClick={() => handlePage("login")}>
+      <span className="cursor-pointer hover:border-b" onClick={() => handlePage("login")}>
         حساب کاربری دارید؟ رفتن به صفحه ورود
       </span>
     </form>

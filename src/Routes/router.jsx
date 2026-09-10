@@ -44,11 +44,11 @@ const router = createBrowserRouter([
         element: <Protected />,
         children: [
           {
-            path: "/checkout",
+            path: "checkout",
             element: <Checkout />,
           },
           {
-            path: "/profile",
+            path: "profile",
             element: <Profile />,
           },
         ],

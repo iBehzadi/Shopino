@@ -12,6 +12,9 @@ export const useCartStore = create((set) => ({
       );
 
       if (exist) {
+        if (exist.cartQuantity >= product.stock) {
+        return state;
+      }
         return {
           items: state.items.map((item) =>
             item.documentId === product.documentId
@@ -52,7 +55,13 @@ export const useCartStore = create((set) => ({
     set((state) => ({
       items: state.items.map((item) =>
         item.documentId === documentId
-          ? { ...item, cartQuantity: item.cartQuantity + 1 }
+          ? {
+            ...item,
+            cartQuantity:
+              item.cartQuantity < item.stock
+                ? item.cartQuantity + 1
+                : item.cartQuantity,
+          }
           : item,
       ),
     })),
