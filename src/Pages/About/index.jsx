@@ -34,7 +34,7 @@ export default function About() {
 
   return (
     <main className="min-h-screen bg-gray-50 pt-6">
-      {/* Hero */}
+      {/* top */}
       <section className="relative overflow-hidden bg-white">
         <div className="mx-auto grid max-w-7xl items-center gap-12 px-6 py-20 lg:grid-cols-2 lg:px-8">
           <div className="text-right">
@@ -67,7 +67,7 @@ export default function About() {
             <div className="absolute -right-10 -top-10 h-40 w-40 rounded-full bg-blue-100 blur-3xl" />
             <div className="absolute -bottom-10 -left-10 h-40 w-40 rounded-full bg-purple-100 blur-3xl" />
 
-            <div className="relative flex h-80 items-center justify-center rounded-3xl bg-gradient-to-br from-blue-600 to-indigo-700 shadow-xl">
+            <div className="relative flex h-80 items-center justify-center rounded-3xl bg-linear-to-br from-blue-600 to-indigo-700 shadow-xl">
               <div className="text-center text-white">
                 <FiShoppingBag className="mx-auto mb-5 text-7xl" />
 
@@ -140,7 +140,7 @@ export default function About() {
         </div>
       </section>
 
-      {/* CTA */}
+      {/* bottom */}
       <section className="px-6 py-20">
         <div className="mx-auto max-w-7xl rounded-3xl bg-blue-600 px-6 py-14 text-center text-white shadow-xl">
           <h2 className="text-3xl font-bold">

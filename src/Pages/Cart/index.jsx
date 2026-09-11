@@ -179,7 +179,7 @@ export default function Cart() {
         </table>
       </div>
 
-      {/* ================= MOBILE ================= */}
+      {/*  mobile  */}
       <div className="space-y-4 md:hidden">
         {cartItems.map((item) => {
           const finalPrice =
@@ -217,7 +217,7 @@ export default function Cart() {
                 </div>
               </div>
 
-              {/* Quantity */}
+              {/* quantity */}
               <div className="mt-4 flex items-center justify-between">
                 <span className="text-sm text-gray-500">
                   تعداد
@@ -248,7 +248,7 @@ export default function Cart() {
                 </div>
               </div>
 
-              {/* Final price */}
+              {/* final price */}
               <div className="mt-4 flex items-center justify-between border-t border-gray-100 pt-4">
                 <span className="text-sm text-gray-500">
                   مبلغ نهایی
@@ -262,7 +262,7 @@ export default function Cart() {
                 </span>
               </div>
 
-              {/* Remove */}
+              {/* remove item */}
               <button
                 onClick={() =>
                   removeFromCart(item.documentId)
@@ -275,7 +275,6 @@ export default function Cart() {
           );
         })}
 
-        {/* Mobile Summary */}
         <div className="rounded-2xl border border-gray-200 bg-gray-50 p-4">
           <div className="flex justify-between text-sm">
             <span>تعداد محصولات</span>

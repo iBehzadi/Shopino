@@ -28,7 +28,7 @@ export default function Checkout() {
 
   return (
     <div dir="rtl" className="min-h-screen bg-gray-50 px-4 py-10 pt-26">
-      {/* Header */}
+      {/* header */}
       <div className="mx-auto mb-8 max-w-7xl">
         <h1 className="text-2xl font-bold text-gray-900">تکمیل سفارش</h1>
 
@@ -39,9 +39,8 @@ export default function Checkout() {
         </div>
       </div>
 
-      {/* Main */}
       <div className="mx-auto flex max-w-7xl flex-col gap-6 lg:flex-row lg:items-start">
-        {/* Right - Form */}
+        {/* right form */}
         <div className="flex w-full flex-col gap-5 lg:w-2/3">
           {/* Receiver Info */}
           <form className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm sm:p-6">
@@ -162,12 +161,12 @@ export default function Checkout() {
           </div>
         </div>
 
-        {/* Left - Order Summary */}
+        {/* order */}
         <div className="w-full lg:sticky lg:top-28 lg:w-1/3">
           <div className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm sm:p-6">
             <h2 className="mb-5 text-xl font-bold">خلاصه سفارش</h2>
 
-            {/* Product */}
+            {/* product */}
             {cartItems.map((item) => (
               <div className="flex items-center gap-3 border-b border-gray-100 pb-4">
                 <img
@@ -194,7 +193,7 @@ export default function Checkout() {
               </div>
             ))}
 
-            {/* Prices */}
+            {/* prices */}
             <div className="mt-5 space-y-3 text-sm">
               <div className="flex justify-between">
                 <span className="text-gray-500">جمع جزء</span>
@@ -219,7 +218,7 @@ export default function Checkout() {
               </div>
             </div>
 
-            {/* Total */}
+            {/* total */}
             <div className="mt-5 flex items-center justify-between border-t border-gray-200 pt-5">
               <span className="font-bold">مبلغ نهایی</span>
 

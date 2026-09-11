@@ -17,7 +17,6 @@ export default function Login() {
   });
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(code)
     if (fields.password !== fields.passwordConfirmation) {
       passwordRef.current.classList.add("bg-red-300");
       passwordConfirmationRef.current.classList.add("bg-red-300");
