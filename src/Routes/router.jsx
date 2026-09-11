@@ -11,6 +11,8 @@ import {
 } from "../Pages";
 import Layout from "../Layout";
 import Protected from "../Layout/Protected";
+import ResetPassword from "../Pages/Auth/ResetPassword";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -39,6 +41,10 @@ const router = createBrowserRouter([
       {
         path: "cart",
         element: <Cart />,
+      },
+      {
+        path: "auth/reset-password",
+        element: <ResetPassword />,
       },
       {
         element: <Protected />,

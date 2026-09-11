@@ -14,6 +14,7 @@ export default function Login({ handlePage }) {
   });
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     try {
       const result = await fetchData("auth/local", {
         method: "POST",
@@ -31,6 +32,7 @@ export default function Login({ handlePage }) {
     } catch (error) {
       notify("error", error.message);
     }
+    setLoading(false);
   };
   return (
     <form
@@ -66,6 +68,9 @@ export default function Login({ handlePage }) {
       </button>
       <span className="cursor-pointer hover:border-b" onClick={() => handlePage("register")}>
         جهت ساخت حساب کاربری کلیک کنید.
+      </span>
+      <span className="cursor-pointer text-blue-500 hover:border-b" onClick={() => handlePage("forget")}>
+       فراموشی رمز عبور
       </span>
     </form>
   );
