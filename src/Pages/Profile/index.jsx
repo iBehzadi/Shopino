@@ -11,8 +11,7 @@ import { useAuthStore } from "../../Store/authStore";
 
 export default function Profile() {
   const navigate = useNavigate();
-  const { logout } = useAuthStore();
-  const user = JSON.parse(localStorage.getItem("shopino-auth")).state.user;
+  const { user, logout } = useAuthStore();
 
   return (
     <div className="mt-30 mb-20 px-4 sm:px-8 lg:px-12" dir="rtl">
@@ -47,7 +46,9 @@ export default function Profile() {
             <div className="flex items-center justify-between rounded-xl bg-gray-50 p-4">
               <div className="flex items-center gap-3">
                 <FiUser className="text-gray-500" />
-                <span className="text-sm text-gray-500">نام و نام خانوادگی</span>
+                <span className="text-sm text-gray-500">
+                  نام و نام خانوادگی
+                </span>
               </div>
               <span className="font-medium text-gray-800">
                 {user?.fullName || "-"}

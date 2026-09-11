@@ -44,7 +44,7 @@ export default function ProductDetails() {
       )
     : 0;
 
-  const formatPrice = (price) => new Intl.NumberFormat("fa-IR").format(price);
+  const formatPrice = (price) => price.toLocaleString("fa-IR");
 
   if (!product) {
     return (

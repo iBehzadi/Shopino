@@ -9,8 +9,13 @@ import { RiShoppingBag3Line } from "react-icons/ri";
 import { MdOutlineContactPhone } from "react-icons/md";
 import { FaChild } from "react-icons/fa";
 import { SlBasketLoaded } from "react-icons/sl";
+import fetchData from "../../Utils/fetchData";
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
+  const [search, setSearch] = useState("");
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(false);
+
   const [isOpen, setIsOpen] = useState(false);
   const { user, logout } = useAuthStore();
   const items = useCartStore((state) => state.items);
@@ -22,6 +27,24 @@ export default function Navbar() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  useEffect(() => {
+    if (!search.trim()) {
+      setProducts([]);
+      return;
+    }
+    setLoading(true);
+    const sTime = setInterval(async () => {
+      const data = await fetchData(
+        `products?filters[title][$containsi]=${encodeURIComponent(search)}&populate=*`,
+      );
+      setProducts(data.data);
+      setLoading(false);
+      clearInterval(sTime);
+    }, 500);
+
+    return () => clearInterval(sTime);
+  }, [search]);
 
   const navLinks = [
     { name: "خانه", path: "/", icon: CiHome },
@@ -37,12 +60,12 @@ export default function Navbar() {
         className={`mx-auto flex max-w-7xl bg-white items-center justify-between px-4 py-4 transition-all duration-400 ${scrolled ? " shadow rounded-2xl backdrop-blur-xl  border-white/10 py-3 my-2" : "bg-transparent py-5"}`}
       >
         <div className="flex items-center gap-20">
-          {/* Logo */}
+          {/* logo */}
           <Link to="/" className="text-2xl font-bold text-blue-600">
             شاپینو
           </Link>
 
-          {/* Desktop Menu */}
+          {/* desktop Menu */}
           <div className="hidden items-center gap-6 sm:flex ">
             {navLinks.map((link) => {
               const Icon = link.icon;
@@ -69,13 +92,78 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* Desktop Actions */}
-        <div className="hidden items-center gap-4 sm:flex ">
+        {/* desktop Actions */}
+        <div className="hidden  items-center gap-4 sm:flex ">
           <input
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
             type="text"
             placeholder="جستجو"
-            className="hidden rounded-full w-50 bg-gray-200 transition-all duration-300 focus:w-90 hover:w-90 px-4 py-2 outline-blue-300 lg:block"
+            className="hidden rounded-full w-50 bg-gray-200 transition-all duration-300  px-4 py-2 outline-blue-300 lg:block"
           />
+          {search.trim() && (
+            <div className="absolute top-20 left-30 z-50 w-80 overflow-hidden rounded-xl border border-gray-200 bg-white shadow-xl">
+              {loading ? (
+                <div className="p-5 text-center text-sm text-gray-500">
+                  در حال جستجو...
+                </div>
+              ) : products.length > 0 ? (
+                // show result
+                <>
+                  <div className="max-h-100 overflow-y-auto p-2">
+                    {products.map((product) => {
+                      const price =
+                        product.discountPrice > 0
+                          ? product.discountPrice
+                          : product.price;
+
+                      return (
+                        <div
+                          key={product.documentId}
+                          onClick={() => {
+                            navigate(
+                              `/product-details/${product.documentId}/${product.title}`,
+                            );
+                            setSearch("");
+                          }}
+                          className="flex cursor-pointer items-center gap-3 rounded-lg p-2 transition hover:bg-gray-50"
+                        >
+                          <div className="h-14 w-14 shrink-0 overflow-hidden rounded-lg border border-gray-100 bg-white">
+                            <img
+                              src={
+                                import.meta.env.VITE_BASE_FILE +
+                                product.images?.[0]?.url
+                              }
+                              alt={product.title}
+                              className="h-full w-full object-contain p-1"
+                            />
+                          </div>
+
+                          <div className="min-w-0 flex-1">
+                            <h3 className="truncate text-sm font-medium text-gray-800">
+                              {product.title}
+                            </h3>
+
+                            <p className="mt-1 text-xs text-gray-500">
+                              {new Intl.NumberFormat("fa-IR").format(price)}{" "}
+                              تومان
+                            </p>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </>
+              ) : (
+                <div className="p-6 text-center">
+                  <p className="text-sm text-gray-500">محصولی یافت نشد 😕</p>
+                  <p className="mt-1 text-xs text-gray-400">
+                    عبارت دیگری را امتحان کن
+                  </p>
+                </div>
+              )}
+            </div>
+          )}
 
           <Link
             to="/cart"
@@ -131,7 +219,7 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* Mobile Menu Button */}
+        {/* mobile Menu button */}
         <button
           onClick={() => setIsOpen(true)}
           className="text-3xl text-gray-700 sm:hidden"
@@ -140,7 +228,6 @@ export default function Navbar() {
         </button>
       </div>
 
-      {/* Overlay */}
       {isOpen && (
         <div
           onClick={() => setIsOpen(false)}
@@ -148,16 +235,15 @@ export default function Navbar() {
         />
       )}
 
-      {/* Mobile Sidebar */}
+      {/* mobile sidebar */}
       <div
         className={`fixed right-0 top-0 h-full w-72 bg-white p-6 shadow-xl transition-transform duration-300 sm:hidden ${
           isOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
-        {/* Close */}
+        {/* close */}
         <div className="mb-8 flex items-center justify-between">
           <span className="text-xl font-bold text-blue-600">شاپینو</span>
-
           <button
             onClick={() => setIsOpen(false)}
             className="text-3xl text-gray-700"
@@ -166,7 +252,7 @@ export default function Navbar() {
           </button>
         </div>
 
-        {/* Mobile Links */}
+        {/* mobile links */}
         <div className="flex flex-col gap-6">
           {navLinks.map((link) => (
             <Link
@@ -182,9 +268,7 @@ export default function Navbar() {
               {link.name}
             </Link>
           ))}
-
           <hr />
-
           <Link
             to="/cart"
             onClick={() => setIsOpen(false)}

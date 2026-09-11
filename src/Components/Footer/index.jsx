@@ -76,6 +76,7 @@ export default function Footer() {
 
       <div className="border-t border-gray-800 py-5 text-center text-sm text-gray-500">
         © {new Date().getFullYear()} Shopino — تمامی حقوق محفوظ است.
+        توسعه توسط <a className="hover:text-white" href="https://instagram.com/behzad.1997" target="_blank">Behzad Sadeghi</a>
       </div>
     </footer>
   );
