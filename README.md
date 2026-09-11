@@ -1,147 +1,60 @@
-🛒 Shopino
+# 🛍️ Shopino
 
-Shopino یک فروشگاه اینترنتی مدرن و ریسپانسیو است که با React و Strapi ساخته شده است.
+**Shopino** یک فروشگاه اینترنتی مدرن و ریسپانسیو برای نمایش و خرید محصولات است که با **React** و **Strapi** ساخته شده.
 
-هدف این پروژه، پیاده‌سازی یک فروشگاه واقعی با قابلیت‌هایی مثل نمایش محصولات، دسته‌بندی، جزئیات محصول، سبد خرید، احراز هویت کاربران و فرآیند ثبت سفارش است.
+> پروژه با هدف تمرین و پیاده‌سازی یک فروشگاه واقعی و قابل توسعه طراحی شده است.
 
-🚀 Tech Stack
+## ✨ Features
 
-Frontend
+* 🏠 صفحه اصلی و محصولات ویژه
+* 📱 دسته‌بندی محصولات
+* 🔎 صفحه لیست و جزئیات محصول
+* 🛒 سبد خرید با مدیریت تعداد محصولات
+* 🔐 ثبت‌نام و ورود کاربران
+* 🔑 بازیابی رمز عبور
+* 👤 پروفایل کاربر
+* 📦 مدیریت محصولات با Strapi
+* 📱 طراحی کاملاً ریسپانسیو
+* ⚡ مدیریت State با Zustand
 
-⚛️ React 19 — ساخت رابط کاربری
+## 🛠️ Tech Stack
 
-⚡ Vite — ابزار توسعه و Build
+* React
+* JavaScript
+* Tailwind CSS
+* React Router
+* Zustand
+* Strapi
+* REST API
+* Vite
 
-🎨 Tailwind CSS 4 — طراحی و Responsive UI
+## 🚀 Run Locally
 
-🧭 React Router DOM — مدیریت مسیرها و صفحات
+```bash
+git clone https://github.com/iBehzadi/Shopino.git
 
-🐻 Zustand — مدیریت State
+cd Shopino
 
-🔔 React Hot Toast — نمایش Notification
+npm install
 
-🎯 React Icons — آیکون‌های رابط کاربری
+npm run dev
+```
 
-📡 Fetch API — ارتباط با Backend
+## 📁 Project Structure
 
-Backend
+```text
+src/
+├── Components/
+├── Pages/
+├── Routes/
+├── Store/
+├── Utils/
+└── App.jsx
+```
 
-🟣 Strapi — Headless CMS و REST API
+## 👨‍💻 Developer
 
-🔐 JWT Authentication — احراز هویت کاربران
-
-🗄️ Strapi Admin Panel — مدیریت محصولات و دسته‌بندی‌ها
-
-✨ Features
-
-🏠 Home
-
-Hero Section
-
-نمایش دسته‌بندی محصولات
-
-نمایش محصولات
-
-Navigation و Footer
-
-طراحی Responsive
-
-📦 Products
-
-دریافت محصولات از Strapi
-
-نمایش محصولات به صورت داینامیک
-
-فیلتر محصولات بر اساس دسته‌بندی
-
-نمایش قیمت اصلی و قیمت تخفیف‌خورده
-
-🔎 Product Details
-
-نمایش اطلاعات کامل محصول
-
-نمایش تصاویر محصول
-
-قیمت و تخفیف
-
-انتخاب تعداد
-
-افزودن محصول به سبد خرید
-
-🛒 Shopping Cart
-
-افزودن محصول به سبد خرید
-
-افزایش و کاهش تعداد
-
-حذف محصول
-
-حذف تمام محصولات
-
-محاسبه تعداد کل محصولات
-
-محاسبه مبلغ نهایی
-
-محاسبه مجموع تخفیف
-
-کنترل تعداد محصول بر اساس موجودی
-
-ذخیره State سبد خرید با Zustand
-
-طراحی Responsive برای موبایل و دسکتاپ
-
-🔐 Authentication
-
-ثبت‌نام کاربر
-
-ورود کاربر
-
-دریافت JWT از Strapi
-
-نگهداری اطلاعات کاربر در Zustand
-
-ماندگار کردن وضعیت Login
-
-Logout
-
-Protected Routes
-
-👤 User Profile
-
-صفحات مربوط به اطلاعات کاربر در مسیرهای محافظت‌شده قرار گرفته‌اند.
-
-💳 Checkout
-
-فرآیند Checkout شامل:
-
-اطلاعات گیرنده
-
-شماره موبایل
-
-آدرس
-
-کد پستی
-
-توضیحات سفارش
-
-روش ارسال
-
-روش پرداخت
-
-خلاصه سفارش
-
-محاسبه مبلغ نهایی
-
-
-👨‍💻 Author
-
-Behzad Sadeghi
-
-Frontend Developer
+**Behzad Sadeghi**
 
 GitHub:
 https://github.com/iBehzadi
-
-📄 License
-
-This project is created for learning and portfolio purposes.
