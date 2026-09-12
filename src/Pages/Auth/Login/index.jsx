@@ -26,7 +26,7 @@ export default function Login({ handlePage }) {
       if (result.error?.status == 400) {
         throw new Error(`${result.error.message}`);
       }
-      notify("success", `Wellcome ${result.user.username}`);
+      notify("success", `خوش آمدید ${result.user.username}`);
       setAuth(result.user, result.jwt);
       navigate("/");
     } catch (error) {

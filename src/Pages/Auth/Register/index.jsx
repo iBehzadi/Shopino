@@ -24,7 +24,7 @@ export default function Register({ handlePage }) {
       if (result.error?.status == 400) {
         throw new Error(`${result.error.message}`);
       }
-      notify("success", `Wellcome ${result.user.username}`);
+      notify("success", 'ثبت نام با موفقیت انجام شد.');
       setAuth(result.user, result.jwt);
       navigate('/')
     } catch (error) {

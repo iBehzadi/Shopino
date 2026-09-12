@@ -23,7 +23,7 @@ export default function ForgetPassword({ handlePage }) {
       if (result.error?.status == 400) {
         throw new Error(`${result.error.message}`);
       }
-      notify("success", "Reset Email sent");
+      notify("success", "ایمیل جهت بازیابی ارسال شد");
       navigate("/");
     } catch (error) {
       notify("error", error.message);
