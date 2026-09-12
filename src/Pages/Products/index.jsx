@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import fetchData from "../../Utils/fetchData";
-import ProductCard from "../../Components/ProductCard";
+import { ProductCard, ProductCardSkeleton } from "../../Components";
 
 export default function Products() {
   const [params] = useSearchParams();
   const category = params.get("category");
   const [products, setProducts] = useState([]);
+  const loadingItems = new Array(12)
+    .fill(null)
+    .map((_, index) => <ProductCardSkeleton key={index} />);
+
   useEffect(() => {
     (async () => {
       const data = category
@@ -17,6 +21,7 @@ export default function Products() {
       setProducts(data.data);
     })();
   }, [category]);
+
   return (
     <div className=" mt-24 mx-12">
       <div className="flex flex-col items-center justify-center my-10">
@@ -24,12 +29,9 @@ export default function Products() {
         <hr className="h-2 w-full text-blue-300 my-4" />
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10">
-        {products?.map((prd) => (
-          <ProductCard
-            product={prd}
-            key={prd.id}
-          />
-        ))}
+        {products.length > 0
+          ? products?.map((prd) => <ProductCard product={prd} key={prd.id} />)
+          : loadingItems}
       </div>
     </div>
   );

@@ -19,7 +19,7 @@ export default function ForgetPassword({ handlePage }) {
         method: "POST",
         body: JSON.stringify(fields),
       });
-      console.log(result);
+      console.log(result)
       if (result.error?.status == 400) {
         throw new Error(`${result.error.message}`);
       }
