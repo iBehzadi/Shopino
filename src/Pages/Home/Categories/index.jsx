@@ -8,7 +8,7 @@ export default function Categories() {
   useEffect(() => {
     (async () => {
       const data = await fetchData("categories?populate=*");
-      setCategories(data.data);
+      setCategories(data.data ?? []);
     })();
   }, []);
 

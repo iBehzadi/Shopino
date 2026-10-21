@@ -18,7 +18,7 @@ export default function Products() {
             `products?filters[categories][slug][$eq]=${category}&populate=*`,
           )
         : await fetchData(`products?populate=*`);
-      setProducts(data.data);
+      setProducts(data.data ?? []);
     })();
   }, [category]);
 
