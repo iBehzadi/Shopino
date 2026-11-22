@@ -11,7 +11,7 @@ export default function Auth() {
     setPage(pg);
   };
   if (user) {
-      return <Navigate to="/profile" />;
+      return <Navigate to="/products" />;
     }
   return (
     <>

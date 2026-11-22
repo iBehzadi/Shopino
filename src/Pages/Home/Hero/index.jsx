@@ -7,7 +7,7 @@ export default function Hero() {
   return (
     <div className="relative h-screen overflow-hidden">
       <img
-        src="../../../src/assets/w.jpg"
+        src="../../../src/assets/w.webp"
         className="h-full w-full object-cover object-center"
         alt="محصولات دیجیتال"
       />

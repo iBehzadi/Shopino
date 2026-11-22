@@ -54,10 +54,10 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-400 ${scrolled ? "" : "border-b border-b-gray-200 bg-white"}`}
+      className={`fixed top-0 left-0 right-0 z-50 px-4 transition-all duration-400 ${scrolled ? "" : "border-b border-b-gray-200 bg-white"}`}
     >
       <div
-        className={`mx-auto flex max-w-7xl bg-white items-center justify-between px-4 py-4 transition-all duration-400 ${scrolled ? " shadow rounded-2xl backdrop-blur-xl  border-white/10 py-3 my-2" : "bg-transparent py-5"}`}
+        className={`mx-auto flex max-w-7xl  items-center justify-between px-4 py-4 transition-all duration-400 bg-white ${scrolled ? " shadow rounded-2xl backdrop-blur-xl  border-white/10 py-3 my-2 " : "bg-transparent py-5"}`}
       >
         <div className="flex items-center gap-20">
           {/* logo */}
@@ -180,15 +180,15 @@ export default function Navbar() {
               <div className="group relative flex items-center gap-2">
                 <Link
                   to="/profile"
-                  className="text-gray-700 hover:text-blue-600"
+                  className="text-gray-700 hover:text-blue-600 flex flex-col items-center gap-1"
                 >
                   <BiUser className="text-3xl bg-gray-300 rounded-full p-1 hover:text-white " />
-                </Link>
-                <div className="absolute bg-white shadow border border-gray-200 p-2 flex flex-col gap-2 items-center rounded top-10 -left-5 w-30 h-0 opacity-0 invisible group-hover:opacity-100 group-hover:h-auto group-hover:visible transition-all duration-300">
                   <span className="text-sm text-gray-600 flex items-center gap-1 flex-1">
-                    <FaChild />
-                    سلام {user.username}
+                    
+                    {user.username}
                   </span>
+                </Link>
+                <div className="absolute bg-white shadow border border-gray-200 p-2 flex flex-col gap-2 items-center rounded top-15 -left-4 w-30 h-0 opacity-0 invisible group-hover:opacity-100 group-hover:h-auto group-hover:visible transition-all duration-300">
                   <Link
                     to="/cart"
                     className="text-sm flex items-center justify-center py-2 gap-1 cursor-pointer text-white bg-blue-400 w-full rounded hover:scale-105 transition-all duration-300"
